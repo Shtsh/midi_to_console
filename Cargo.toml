@@ -1,0 +1,33 @@
+[package]
+name = "midi_to_switch"
+version = "0.1.0"
+edition = "2021"
+readme = "README.md"
+description = "Use MIDI controllers with Nintendo Switch"
+license = "MIT"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+midir = "0.9.0"
+log = "0.4.17"
+lazy_static = "1.4.0"
+libc = "0.2.139"
+
+[package.metadata.deb]
+maintainer = "Anton Liparin <liparinai@gmail.com>"
+copyright = "2023, Anton Liparin <liparinai@gmail.com>"
+license-file = ["LICENSE", "2"]
+extended-description = """\
+Simple tool to allow using MIDI input device as \
+controlle for Nintendo Switch."""
+depends = "$auto"
+section = "utility"
+priority = "optional"
+assets = [
+    ["target/release/midi_to_switch", "usr/sbin/", "755"],
+    ["tools/create_gadget_device.sh", "usr/sbin/", "755"],
+    ["README.md", "usr/share/doc/midi_to_switch/README", "644"],
+]
+maintainer-scripts = "debian/"
+systemd-units = { enable = true, start = true }

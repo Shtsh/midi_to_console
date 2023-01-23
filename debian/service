@@ -1,0 +1,10 @@
+[Unit]
+Description=MIDI as Switch controller
+
+[Service]
+ExecStartPre=/usr/sbin/create_gadget_device.sh
+ExecStart=/usr/sbin/midi_to_switch
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
